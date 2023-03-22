@@ -13,7 +13,16 @@ async function readTalker() {
     }
 }
 
+async function writeTalker(talker) {
+    try {
+      const addTalkers = JSON.stringify(talker);
+      await fs.writeFile(path.join(__dirname, TALKER_PATH), addTalkers);
+    } catch (error) {
+      throw new Error(`Erro ao inserir palestrante arquivo: ${error}`);
+    }
+  }
+
 module.exports = {
     readTalker,
-   // findTalkerId,
+    writeTalker,
 };
